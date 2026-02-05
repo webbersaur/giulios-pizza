@@ -1,0 +1,1094 @@
+/* Giulio's Pizza Restaurant - Main Stylesheet */
+/* Classic Italian Trattoria Style */
+
+/* ===== CSS Variables ===== */
+:root {
+  --color-primary: #8B0000;
+  --color-primary-dark: #6B0000;
+  --color-primary-light: #A52A2A;
+  --color-cream: #FFF8E7;
+  --color-cream-dark: #F5EED6;
+  --color-text: #3E2723;
+  --color-text-light: #5D4037;
+  --color-gold: #D4AF37;
+  --color-olive: #556B2F;
+  --color-white: #FFFFFF;
+  --color-black: #1A1A1A;
+
+  --font-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+  --shadow-md: 0 4px 8px rgba(0,0,0,0.15);
+  --shadow-lg: 0 8px 16px rgba(0,0,0,0.2);
+
+  --transition: 0.3s ease;
+  --max-width: 1200px;
+}
+
+/* ===== Reset & Base ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-cream);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+a:hover {
+  color: var(--color-primary-dark);
+}
+
+ul, ol {
+  list-style: none;
+}
+
+/* ===== Typography ===== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-text);
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.25rem; }
+
+@media (min-width: 768px) {
+  h1 { font-size: 3.5rem; }
+  h2 { font-size: 2.5rem; }
+  h3 { font-size: 1.75rem; }
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+/* ===== Layout Utilities ===== */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.section {
+  padding: 3rem 0;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 4rem 0;
+  }
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.section-header h2 {
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+}
+
+.section-header p {
+  color: var(--color-text-light);
+  font-size: 1.1rem;
+}
+
+/* ===== Buttons ===== */
+.btn {
+  display: inline-block;
+  padding: 0.875rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-dark);
+  color: var(--color-white);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+  background-color: var(--color-gold);
+  color: var(--color-text);
+}
+
+.btn-secondary:hover {
+  background-color: #C9A227;
+  color: var(--color-text);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.btn-lg {
+  padding: 1rem 2.5rem;
+  font-size: 1.125rem;
+}
+
+/* ===== Header & Navigation ===== */
+.header {
+  background-color: var(--color-white);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.logo img {
+  height: 78px;
+  width: auto;
+}
+
+@media (min-width: 768px) {
+  .logo img {
+    height: 91px;
+  }
+}
+
+.nav-toggle {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: var(--color-primary);
+  border-radius: 2px;
+  transition: var(--transition);
+}
+
+.nav-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.nav-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+@media (min-width: 768px) {
+  .nav-toggle {
+    display: none;
+  }
+}
+
+.nav {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: var(--color-white);
+  box-shadow: var(--shadow-md);
+  padding: 1rem;
+}
+
+.nav.active {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .nav {
+    display: flex;
+    position: static;
+    box-shadow: none;
+    padding: 0;
+    gap: 0.5rem;
+  }
+}
+
+.nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .nav-list {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.25rem;
+  }
+}
+
+.nav-link {
+  display: block;
+  padding: 0.75rem 1rem;
+  color: var(--color-text);
+  font-weight: 500;
+  border-radius: 4px;
+  transition: all var(--transition);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background-color: var(--color-cream);
+  color: var(--color-primary);
+}
+
+.nav .btn {
+  margin-top: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .nav .btn {
+    margin-top: 0;
+    margin-left: 0.5rem;
+  }
+}
+
+/* ===== Hero Section ===== */
+.hero {
+  background: linear-gradient(rgba(139, 0, 0, 0.85), rgba(139, 0, 0, 0.9)),
+              url('../images/bacon-pizza-north-haven-ct.jpg') center/cover;
+  color: var(--color-white);
+  text-align: center;
+  padding: 4rem 1rem;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .hero {
+    padding: 6rem 2rem;
+    min-height: 600px;
+  }
+}
+
+.hero-content {
+  max-width: 800px;
+}
+
+.hero h1 {
+  color: var(--color-white);
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.hero-tagline {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.95;
+}
+
+@media (min-width: 768px) {
+  .hero-tagline {
+    font-size: 1.5rem;
+  }
+}
+
+.hero-features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem 2rem;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+
+.hero-features span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hero-cta {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+@media (min-width: 480px) {
+  .hero-cta {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+/* ===== Cards & Grid ===== */
+.card-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .card-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.card {
+  background-color: var(--color-white);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+.card-title {
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+}
+
+.card-text {
+  color: var(--color-text-light);
+  margin-bottom: 1rem;
+}
+
+/* ===== Featured Section ===== */
+.featured {
+  background-color: var(--color-white);
+}
+
+/* ===== About Preview ===== */
+.about-preview {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .about-preview {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+}
+
+.about-preview-img {
+  border-radius: 8px;
+  box-shadow: var(--shadow-md);
+}
+
+.about-preview-content h2 {
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+}
+
+/* ===== Partner Links ===== */
+.partners {
+  background-color: var(--color-cream-dark);
+}
+
+.partner-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .partner-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.partner-card {
+  background-color: var(--color-white);
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition);
+}
+
+.partner-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.partner-card img {
+  max-height: 80px;
+  margin: 0 auto 1rem;
+}
+
+.partner-card h3 {
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.partner-card p {
+  color: var(--color-text-light);
+  font-size: 0.9rem;
+}
+
+/* ===== Menu Page ===== */
+.menu-header {
+  background: linear-gradient(rgba(139, 0, 0, 0.9), rgba(139, 0, 0, 0.95)),
+              url('../images/fresh-homemade-pizza-dough.png') center/cover;
+  color: var(--color-white);
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.menu-header h1 {
+  color: var(--color-white);
+}
+
+.menu-nav {
+  background-color: var(--color-white);
+  padding: 1rem;
+  position: sticky;
+  top: 80px;
+  z-index: 100;
+  box-shadow: var(--shadow-sm);
+  overflow-x: auto;
+}
+
+.menu-nav-list {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-start;
+  min-width: max-content;
+}
+
+@media (min-width: 1024px) {
+  .menu-nav-list {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+.menu-nav-link {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  border-radius: 4px;
+  color: var(--color-text);
+}
+
+.menu-nav-link:hover,
+.menu-nav-link.active {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.menu-section {
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--color-cream-dark);
+}
+
+.menu-section:last-child {
+  border-bottom: none;
+}
+
+.menu-section h2 {
+  color: var(--color-primary);
+  text-align: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-gold);
+  display: inline-block;
+  width: 100%;
+}
+
+.menu-category {
+  margin-bottom: 2rem;
+}
+
+.menu-category h3 {
+  color: var(--color-text);
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.menu-items {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .menu-items {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.menu-item {
+  background-color: var(--color-white);
+  padding: 1rem;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.menu-item-name {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.menu-item-desc {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  margin-top: 0.25rem;
+}
+
+.menu-item-price {
+  font-weight: 600;
+  color: var(--color-primary);
+  white-space: nowrap;
+}
+
+.menu-note {
+  background-color: var(--color-cream-dark);
+  padding: 1rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* ===== About Page ===== */
+.about-header {
+  background: linear-gradient(rgba(139, 0, 0, 0.9), rgba(139, 0, 0, 0.95)),
+              url('../images/fresh-homemade-pizza-dough.png') center/cover;
+  color: var(--color-white);
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.about-header h1 {
+  color: var(--color-white);
+}
+
+.story-section {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .story-section {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+}
+
+.story-content h2 {
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+}
+
+.story-img {
+  border-radius: 8px;
+  box-shadow: var(--shadow-md);
+}
+
+.chefs-section {
+  background-color: var(--color-white);
+}
+
+.chef-grid {
+  display: grid;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .chef-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.chef-card {
+  text-align: center;
+  padding: 2rem;
+  background-color: var(--color-cream);
+  border-radius: 8px;
+}
+
+.chef-card h3 {
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+}
+
+.chef-card .role {
+  font-style: italic;
+  color: var(--color-text-light);
+  margin-bottom: 0.5rem;
+}
+
+.chef-card .origin {
+  color: var(--color-gold);
+  font-weight: 600;
+}
+
+.values-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .values-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.value-card {
+  text-align: center;
+  padding: 2rem;
+  background-color: var(--color-white);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+}
+
+.value-card h3 {
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+}
+
+/* ===== Catering Page ===== */
+.catering-header {
+  background: linear-gradient(rgba(139, 0, 0, 0.85), rgba(139, 0, 0, 0.9)),
+              url('../images/wedding-catering-table-setting.jpg') center/cover;
+  color: var(--color-white);
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.catering-header h1 {
+  color: var(--color-white);
+}
+
+.event-types {
+  display: grid;
+  gap: 1rem;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .event-types {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+.event-type {
+  background-color: var(--color-white);
+  padding: 1.5rem 1rem;
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+}
+
+.event-type h3 {
+  color: var(--color-primary);
+  font-size: 1rem;
+}
+
+.package-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .package-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .package-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.package-card {
+  background-color: var(--color-white);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+}
+
+.package-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.package-card-body {
+  padding: 1.5rem;
+}
+
+.package-card h3 {
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+}
+
+.catering-cta {
+  background-color: var(--color-cream-dark);
+  text-align: center;
+}
+
+.catering-cta-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 480px) {
+  .catering-cta-buttons {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+/* ===== Contact Form ===== */
+.contact-form {
+  background-color: var(--color-white);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--color-text);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--color-cream-dark);
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color var(--transition);
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.form-group textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* ===== Contact Page ===== */
+.contact-header {
+  background: linear-gradient(rgba(139, 0, 0, 0.9), rgba(139, 0, 0, 0.95)),
+              url('../images/restaurant-dining-catering-event.jpg') center/cover;
+  color: var(--color-white);
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.contact-header h1 {
+  color: var(--color-white);
+}
+
+.contact-grid {
+  display: grid;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.contact-info-card {
+  background-color: var(--color-white);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+}
+
+.contact-info-card h2 {
+  color: var(--color-primary);
+  margin-bottom: 1.5rem;
+}
+
+.contact-item {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.contact-item h3 {
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.contact-item p {
+  margin: 0;
+  color: var(--color-text-light);
+}
+
+.contact-item a {
+  color: var(--color-primary);
+}
+
+.map-container {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  height: 100%;
+  min-height: 300px;
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  border: none;
+}
+
+/* ===== Photo Gallery ===== */
+.gallery-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .gallery-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.gallery-item {
+  border-radius: 8px;
+  overflow: hidden;
+  aspect-ratio: 1;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+/* ===== Footer ===== */
+.footer {
+  background-color: var(--color-text);
+  color: var(--color-cream);
+  padding: 3rem 0 1rem;
+}
+
+.footer-grid {
+  display: grid;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .footer-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.footer-section h4 {
+  color: var(--color-gold);
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.footer-section p,
+.footer-section a {
+  color: var(--color-cream);
+  opacity: 0.9;
+}
+
+.footer-section a:hover {
+  color: var(--color-gold);
+  opacity: 1;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-logo {
+  max-height: 60px;
+  margin-bottom: 1rem;
+}
+
+.footer-social {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.footer-social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  transition: background-color var(--transition);
+}
+
+.footer-social a:hover {
+  background-color: var(--color-primary);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* ===== Utility Classes ===== */
+.text-center { text-align: center; }
+.text-primary { color: var(--color-primary); }
+.text-gold { color: var(--color-gold); }
+.bg-white { background-color: var(--color-white); }
+.bg-cream { background-color: var(--color-cream); }
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+
+/* ===== Accessibility ===== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
