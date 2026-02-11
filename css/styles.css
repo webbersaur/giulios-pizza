@@ -520,10 +520,16 @@ p {
   background-color: var(--color-white);
   padding: 1rem;
   position: sticky;
-  top: 80px;
+  top: 103px;
   z-index: 100;
   box-shadow: var(--shadow-sm);
   overflow-x: auto;
+}
+
+@media (min-width: 768px) {
+  .menu-nav {
+    top: 116px;
+  }
 }
 
 .menu-nav-list {
