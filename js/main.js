@@ -184,6 +184,47 @@
   }
 
   /**
+   * Rate Us Modal
+   */
+  function initRateUsModal() {
+    var overlay = document.getElementById('rateUsModal');
+    if (!overlay) return;
+
+    var closeBtn = document.getElementById('closeRateUsModal');
+    var openBtn = document.getElementById('openRateUsModal');
+    var footerBtn = document.getElementById('footerRateUsBtn');
+
+    function openModal() {
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    if (openBtn) openBtn.addEventListener('click', openModal);
+    if (footerBtn) {
+      footerBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        openModal();
+      });
+    }
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) closeModal();
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && overlay.classList.contains('active')) {
+        closeModal();
+      }
+    });
+  }
+
+  /**
    * Initialize all functionality
    */
   function init() {
@@ -193,6 +234,7 @@
     initCateringForm();
     initHeaderScroll();
     initLazyLoading();
+    initRateUsModal();
   }
 
   // Run on DOM ready

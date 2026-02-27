@@ -207,6 +207,23 @@
     </div>
   </section>
 
+  <!-- Rate Us Section -->
+  <section class="rate-us-section">
+    <div class="container">
+      <div class="rate-us-content">
+        <div class="rate-us-text">
+          <h2>How Was Your Experience?</h2>
+          <p>Your feedback means the world to us!</p>
+          <button class="btn btn-primary" id="openRateUsModal">Rate Us</button>
+        </div>
+        <div class="rate-us-emojis">
+          <span class="emoji-happy">😊</span>
+          <span class="emoji-sad">😔</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
@@ -225,6 +242,7 @@
             <a href="mobile-bar.html">Mobile Bar</a>
             <a href="catering.html">Catering</a>
             <a href="contact.html">Contact</a>
+            <a href="#" id="footerRateUsBtn">Rate Your Experience</a>
           </div>
         </div>
 
@@ -241,6 +259,25 @@
       </div>
     </div>
   </footer>
+
+  <!-- Rate Us Modal -->
+  <div class="rate-modal-overlay" id="rateUsModal">
+    <div class="rate-modal">
+      <button class="rate-modal-close" id="closeRateUsModal">&times;</button>
+      <h2 class="rate-modal-title">How Was Your Experience?</h2>
+      <p class="rate-modal-subtitle">We value your feedback!</p>
+      <div class="rate-modal-buttons">
+        <a href="https://g.page/r/CTiGdgQmreYuEAE/review" class="rate-modal-btn rate-modal-btn-happy" target="_blank" rel="noopener">
+          <span class="rate-modal-btn-icon">😊</span>
+          <span class="rate-modal-btn-text">Happy</span>
+        </a>
+        <a href="contact.html" class="rate-modal-btn rate-modal-btn-sad">
+          <span class="rate-modal-btn-icon">😔</span>
+          <span class="rate-modal-btn-text">Not Happy</span>
+        </a>
+      </div>
+    </div>
+  </div>
 
   <script src="js/main.js"></script>
 </body>
