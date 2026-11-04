@@ -1,0 +1,10 @@
+# Internal docs, tests and client source files - never deployed
+CLAUDE.md
+*.md
+scripts/
+_from-downloads/
+.claude/
+.DS_Store
+.env
+.env.*
+*email*.txt

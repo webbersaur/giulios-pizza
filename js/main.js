@@ -129,28 +129,55 @@
   function initCateringForm() {
     if (!cateringForm) return;
 
-    cateringForm.addEventListener('submit', function(e) {
+    // Same clock for both reads; the server drops posts made under 3 seconds.
+    const renderedAt = Date.now();
+    const status = document.getElementById('catering-status');
+    const button = cateringForm.querySelector('button[type="submit"]');
+    const CALL_US = 'Please call us at (203) 239-3515.';
+
+    function showStatus(msg, ok) {
+      status.textContent = msg;
+      status.hidden = false;
+      status.style.color = ok ? '#2e7d32' : '#8B0000';
+      status.style.marginTop = '1rem';
+      status.style.fontWeight = '600';
+    }
+
+    cateringForm.addEventListener('submit', async function(e) {
       e.preventDefault();
 
-      // Collect form data
-      const formData = new FormData(cateringForm);
       const data = {};
-      formData.forEach((value, key) => {
-        data[key] = value;
-      });
+      new FormData(cateringForm).forEach((value, key) => { data[key] = value; });
 
-      // Basic validation
       if (!data.name || !data.email || !data.phone) {
-        alert('Please fill in all required fields.');
+        showStatus('Please fill in your name, email and phone number.', false);
         return;
       }
 
-      // In production, this would send to a server
-      // For now, show a success message
-      alert('Thank you for your inquiry! We will contact you shortly to discuss your event.');
+      data._elapsed = Date.now() - renderedAt;
+      button.disabled = true;
+      button.textContent = 'Sending...';
 
-      // Reset form
-      cateringForm.reset();
+      try {
+        const r = await fetch('/api/contact/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        const body = await r.json().catch(() => ({}));
+        if (r.ok) {
+          cateringForm.reset();
+          showStatus('Thank you! We received your inquiry and will contact you shortly to discuss your event.', true);
+          if (typeof gtag === 'function') gtag('event', 'generate_lead', { form_name: 'catering' });
+        } else {
+          showStatus(body.error || ('Your inquiry could not be sent. ' + CALL_US), false);
+        }
+      } catch (err) {
+        showStatus('Your inquiry could not be sent. ' + CALL_US, false);
+      } finally {
+        button.disabled = false;
+        button.textContent = 'Send Inquiry';
+      }
     });
   }
 

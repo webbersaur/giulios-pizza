@@ -1,0 +1,23 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": true,
+  "redirects": [
+    { "source": "/top-shelf-lounge/", "destination": "https://topshelfct.com/", "permanent": true },
+    { "source": "/photo-gallery/", "destination": "/about/", "permanent": true },
+    { "source": "/menu-test/", "destination": "/menu/", "permanent": true },
+    { "source": "/hello-world/", "destination": "/", "permanent": true },
+    { "source": "/hello-world-2/", "destination": "/", "permanent": true },
+    { "source": "/sample-page/", "destination": "/", "permanent": true },
+    { "source": "/category/uncategorized/", "destination": "/", "permanent": true },
+    { "source": "/feed/", "destination": "/", "permanent": true }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+      ]
+    }
+  ]
+}
