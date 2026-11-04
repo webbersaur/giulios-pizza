@@ -41,7 +41,7 @@ No form, by decision (2026-11-04): Sal doesn't check email. The catering page se
 2. At GoDaddy, change ONLY these two records: apex `A @` 35.208.10.153 -> **216.150.1.1** (Vercel's current recommended IP; 76.76.21.21 also works), and `CNAME www` giuliospizza.com. -> **5e753bc7fca954ea.vercel-dns-016.com.** (or cname.vercel-dns.com.). Saving prompts an SMS code to Chris's phone (...7396). **Do not touch MX, autodiscover, or any TXT/SPF/DKIM records** - email is live on Microsoft 365.
 3. Add a host-scoped redirect in vercel.json so `giulios-pizza.vercel.app` doesn't stay indexable as a duplicate:
    `{ "source": "/(.*)", "has": [{"type":"host","value":"giulios-pizza.vercel.app"}], "destination": "https://giuliospizza.com/$1", "permanent": true }`
-4. Verify with `curl -o /dev/null -w '%{http_code} %{url_effective}' -L` on every old URL above, then submit sitemap.xml in Search Console.
+4. Verify with `curl -o /dev/null -w '%{http_code} %{url_effective}' -L` on every old URL above, then submit sitemap.xml in Search Console. The Domain property `sc-domain:giuliospizza.com` was verified 2026-11-04 by a DNS TXT record (`google-site-verification=E-PrF5...`); never delete that TXT record.
 5. Turn off GitHub Pages.
 
 ## Architecture
