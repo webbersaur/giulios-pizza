@@ -11,7 +11,6 @@
   const nav = document.querySelector('.nav');
   const header = document.querySelector('.header');
   const menuNavLinks = document.querySelectorAll('.menu-nav-link');
-  const cateringForm = document.getElementById('catering-form');
 
   /**
    * Mobile Navigation Toggle
@@ -126,61 +125,6 @@
   /**
    * Catering Form Handling
    */
-  function initCateringForm() {
-    if (!cateringForm) return;
-
-    // Same clock for both reads; the server drops posts made under 3 seconds.
-    const renderedAt = Date.now();
-    const status = document.getElementById('catering-status');
-    const button = cateringForm.querySelector('button[type="submit"]');
-    const CALL_US = 'Please call us at (203) 239-3515.';
-
-    function showStatus(msg, ok) {
-      status.textContent = msg;
-      status.hidden = false;
-      status.style.color = ok ? '#2e7d32' : '#8B0000';
-      status.style.marginTop = '1rem';
-      status.style.fontWeight = '600';
-    }
-
-    cateringForm.addEventListener('submit', async function(e) {
-      e.preventDefault();
-
-      const data = {};
-      new FormData(cateringForm).forEach((value, key) => { data[key] = value; });
-
-      if (!data.name || !data.email || !data.phone) {
-        showStatus('Please fill in your name, email and phone number.', false);
-        return;
-      }
-
-      data._elapsed = Date.now() - renderedAt;
-      button.disabled = true;
-      button.textContent = 'Sending...';
-
-      try {
-        const r = await fetch('/api/contact/', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
-        });
-        const body = await r.json().catch(() => ({}));
-        if (r.ok) {
-          cateringForm.reset();
-          showStatus('Thank you! We received your inquiry and will contact you shortly to discuss your event.', true);
-          if (typeof gtag === 'function') gtag('event', 'generate_lead', { form_name: 'catering' });
-        } else {
-          showStatus(body.error || ('Your inquiry could not be sent. ' + CALL_US), false);
-        }
-      } catch (err) {
-        showStatus('Your inquiry could not be sent. ' + CALL_US, false);
-      } finally {
-        button.disabled = false;
-        button.textContent = 'Send Inquiry';
-      }
-    });
-  }
-
   /**
    * Add scroll shadow to header
    */
@@ -217,7 +161,6 @@
     initMobileNav();
     initSmoothScroll();
     initMenuNav();
-    initCateringForm();
     initHeaderScroll();
     initLazyLoading();
   }

@@ -208,69 +208,6 @@
     </div>
   </section>
 
-  <!-- Contact Form -->
-  <section class="section bg-white">
-    <div class="container">
-      <div class="section-header">
-        <h2>Catering Inquiry</h2>
-        <p>Tell us about your event and we'll get back to you</p>
-      </div>
-
-      <form class="contact-form" action="/api/contact/" method="POST" id="catering-form" novalidate>
-        <input type="hidden" name="form" value="catering">
-        <div style="position:absolute;left:-9999px;" aria-hidden="true">
-          <label for="website">Leave this field empty</label>
-          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
-        </div>
-        <div class="form-group">
-          <label for="name">Your Name *</label>
-          <input type="text" id="name" name="name" required>
-        </div>
-
-        <div class="form-group">
-          <label for="email">Email Address *</label>
-          <input type="email" id="email" name="email" required>
-        </div>
-
-        <div class="form-group">
-          <label for="phone">Phone Number *</label>
-          <input type="tel" id="phone" name="phone" required>
-        </div>
-
-        <div class="form-group">
-          <label for="event-type">Event Type</label>
-          <select id="event-type" name="event-type">
-            <option value="">Select an event type...</option>
-            <option value="wedding">Wedding</option>
-            <option value="corporate">Corporate Event</option>
-            <option value="birthday">Birthday Party</option>
-            <option value="graduation">Prom/Graduation</option>
-            <option value="retirement">Retirement Party</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="date">Event Date</label>
-          <input type="date" id="date" name="date">
-        </div>
-
-        <div class="form-group">
-          <label for="guests">Estimated Number of Guests</label>
-          <input type="number" id="guests" name="guests" min="1">
-        </div>
-
-        <div class="form-group">
-          <label for="message">Tell Us About Your Event</label>
-          <textarea id="message" name="message" placeholder="Describe your event, any special requests, dietary restrictions, etc."></textarea>
-        </div>
-
-        <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">Send Inquiry</button>
-        <p class="form-status" id="catering-status" role="status" aria-live="polite" hidden></p>
-      </form>
-    </div>
-  </section>
-
   <!-- Footer -->
   <footer class="footer">
     <div class="container">

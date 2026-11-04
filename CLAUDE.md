@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Static website for Giulio's Pizza Restaurant in North Haven, CT (owner Sal Gagliardi). No build system, bundler, or package manager - plain HTML/CSS/JS plus one Vercel serverless function. It replaces the old WordPress/Divi site on SiteGround.
+Static website for Giulio's Pizza Restaurant in North Haven, CT (owner Sal Gagliardi). No build system, bundler, or package manager - plain HTML/CSS/JS. It replaces the old WordPress/Divi site on SiteGround.
 
 **Preview (Vercel):** https://giulios-pizza.vercel.app (project `giulios-pizza`, team chris-projects-5c36607c)
 **Production domain:** giuliospizza.com - DNS NOT CUT yet (still points at SiteGround 35.208.10.153). See "Launch / DNS cutover" below.
@@ -12,10 +12,9 @@ Static website for Giulio's Pizza Restaurant in North Haven, CT (owner Sal Gagli
 
 ## Development
 
-- `vercel dev` previews clean URLs, redirects and `/api/contact` exactly as production. `python3 -m http.server` works for pages but every asset path is root-absolute (`/images/...`), so open it at the server root.
+- `vercel dev` previews clean URLs and redirects exactly as production. `python3 -m http.server` works for pages but every asset path is root-absolute (`/images/...`), so open it at the server root.
 - Deploy: **push to `main`** - the Vercel project is Git-connected and auto-deploys production. Don't follow a push with a manual deploy.
 - GitHub Pages (webbersaur.github.io/giulios-pizza/) was the original preview. It now renders unstyled, because root-absolute paths don't work under the `/giulios-pizza/` subpath. Turn Pages off; don't "fix" the paths.
-- Run `node scripts/test-contact.js` after touching `api/contact.js`.
 
 ## Routing (vercel.json)
 
@@ -25,9 +24,9 @@ Redirect sources must be written in normalized form, with a trailing slash. Lega
 - `/top-shelf-lounge/` -> https://topshelfct.com/ (308). **The Top Shelf Lounge Google Business Profile website link points at `giuliospizza.com/top-shelf-lounge/`**, so never remove this redirect. Better still, change that GBP's website to topshelfct.com.
 - `/photo-gallery/` -> `/about/`; `/menu-test/` -> `/menu/`; WordPress junk (`/hello-world/`, `/hello-world-2/`, `/sample-page/`, `/category/uncategorized/`, `/feed/`) -> `/`.
 
-## Catering form
+## Catering inquiries
 
-`catering.html` posts JSON (from `js/main.js`) to `/api/contact/`. That handler is ported from `martins-website/api/contact.js`, spam stack included (origin allowlist, `website` honeypot, required `_elapsed`, NANP phone check, content scoring). It emails **sal@giuliospizza.com** through Resend from `noreply@webbersaurus.com`, with the customer's email as reply-to. It needs `RESEND_API_KEY` in Vercel (the shared Webbersaurus key); `CONTACT_TO` and `RESEND_FROM` are optional overrides. **If the domain changes, update `ALLOWED_HOSTS` or the form starts returning 403.** On success it fires a GA `generate_lead` event once GA is installed.
+No form, by decision (2026-11-04): Sal doesn't check email. The catering page sends people to the phone ((203) 239-3515) and EZCater. The old WordPress form went to giuliospizza87@gmail.com and got about 1 real submission a month. Don't add a form back unless someone will actually read it.
 
 ## Business facts
 
@@ -43,7 +42,7 @@ Redirect sources must be written in normalized form, with a trailing slash. Lega
 3. Add a host-scoped redirect in vercel.json so `giulios-pizza.vercel.app` doesn't stay indexable as a duplicate:
    `{ "source": "/(.*)", "has": [{"type":"host","value":"giulios-pizza.vercel.app"}], "destination": "https://giuliospizza.com/$1", "permanent": true }`
 4. Verify with `curl -o /dev/null -w '%{http_code} %{url_effective}' -L` on every old URL above, then submit sitemap.xml in Search Console.
-5. Send a real test catering inquiry, then turn off GitHub Pages.
+5. Turn off GitHub Pages.
 
 ## Architecture
 
@@ -51,7 +50,7 @@ Redirect sources must be written in normalized form, with a trailing slash. Lega
 - `index.html` - Homepage with hero, featured menu, partner links
 - `menu.html` - Full menu with sticky category navigation
 - `about.html` - Story, values, photo gallery (Meet Our Chefs section currently hidden)
-- `catering.html` - Event types, packages, inquiry form
+- `catering.html` - Event types, packages, EZCater + call CTA (no form)
 - `contact.html` - Contact info, Google Maps, photo gallery
 - `pizza-trailer.html` - Wood-fired pizza trailer service (uses `Giulioswfpt.png` header logo)
 - `mobile-bar.html` - Top Shelf Mobile Bar service
@@ -64,7 +63,7 @@ Redirect sources must be written in normalized form, with a trailing slash. Lega
 - Mobile-first responsive design (breakpoint: 768px)
 
 ### JavaScript
-- `js/main.js` - Mobile nav toggle, smooth scroll, menu nav active states, catering form submit to `/api/contact/`
+- `js/main.js` - Mobile nav toggle, smooth scroll, menu nav active states
 
 ### Logos
 - `images/giulios-web.png` - Main site header logo (all pages except pizza trailer)
