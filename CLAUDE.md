@@ -28,6 +28,10 @@ Redirect sources must be written in normalized form, with a trailing slash. Lega
 
 No form, by decision (2026-11-04): Sal doesn't check email. The catering page sends people to the phone ((203) 239-3515) and EZCater. The old WordPress form went to giuliospizza87@gmail.com and got about 1 real submission a month. Don't add a form back unless someone will actually read it.
 
+## Analytics
+
+GA4 account "Giulio's Pizza", property giuliospizza.com (properties/562366614), measurement ID **G-N0ZSSKEKVT**, created 2026-11-04. The tag is inline in every page's `<head>` and only loads gtag.js on `giuliospizza.com` (vercel.app previews send nothing). Events: `click_to_call` (any `tel:` link) and `click_to_order` (Slice or EZCater links, with `order_service`), both carrying `link_location` (header/footer/content). After the first real hits (about 24h after DNS cutover), star both as key events in GA Admin > Events. A tag change means editing all 8 pages.
+
 ## Business facts
 
 - Giulio's Pizza Restaurant & Catering, 126 Middletown Ave., North Haven, CT 06473, (203) 239-3515.

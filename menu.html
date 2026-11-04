@@ -22,6 +22,31 @@
   <link rel="canonical" href="https://giuliospizza.com/menu/">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <!-- Google tag (GA4). Only loads on the real domain, so vercel.app previews don't count. -->
+  <script>
+    if (/(^|\.)giuliospizza\.com$/.test(location.hostname)) {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-N0ZSSKEKVT';
+      document.head.appendChild(s);
+    }
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-N0ZSSKEKVT');
+    // Call taps and online-order taps (Slice, EZCater) are the site's leads.
+    document.addEventListener('click', function(e) {
+      var a = e.target.closest && e.target.closest('a[href]');
+      if (!a) return;
+      var area = a.closest('header, footer');
+      var where = area ? area.tagName.toLowerCase() : 'content';
+      if (a.href.indexOf('tel:') === 0) {
+        gtag('event', 'click_to_call', { link_location: where });
+      } else if (/slicelife\.com|ezcater\.com/.test(a.hostname)) {
+        gtag('event', 'click_to_order', { link_location: where, order_service: a.hostname.indexOf('ezcater') > -1 ? 'ezcater' : 'slice' });
+      }
+    });
+  </script>
 </head>
 <body>
   <!-- Header -->
