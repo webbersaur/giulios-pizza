@@ -1186,3 +1186,8 @@ p {
   color: var(--color-primary);
   margin-top: 0.25rem;
 }
+
+/* Hours lines (no <br>) */
+.hours-line {
+  display: block;
+}
