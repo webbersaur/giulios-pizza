@@ -85,3 +85,7 @@ GA4 account "Giulio's Pizza", property giuliospizza.com (properties/562366614), 
 All pages share the same nav: Home | Menu | About | Pizza Trailer | Mobile Bar | Catering | Contact
 
 When adding/removing pages, update navigation in all HTML files (both header nav and footer links).
+
+## Seasonal: holiday catering promo (added 2026-11-05)
+
+A `.holiday-promo` section (`id="holiday-catering"`) with Sal's flyer (`/images/holiday-catering-north-haven-ct.webp`) sits on index.html (after the Sunday special, links to /catering/) and catering.html (under the header, call + EZCater). Remove both sections after the holidays (early January); the CSS block at the end of styles.css can go too.

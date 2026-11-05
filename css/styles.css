@@ -1191,3 +1191,65 @@ p {
 .hours-line {
   display: block;
 }
+
+/* Holiday catering promo (seasonal; remove the .holiday-promo sections after the holidays) */
+.holiday-promo {
+  background-color: var(--color-black);
+  color: var(--color-white);
+  padding: 3rem 0;
+}
+.holiday-promo-inner {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+}
+.holiday-promo img {
+  width: 100%;
+  max-width: 460px;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 8px;
+  box-shadow: var(--shadow-lg);
+}
+.holiday-promo-kicker {
+  color: var(--color-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+.holiday-promo h2 {
+  color: var(--color-white);
+  margin-bottom: 1rem;
+}
+.holiday-promo p {
+  color: var(--color-cream);
+  margin-bottom: 1rem;
+}
+.holiday-promo ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+}
+.holiday-promo li {
+  color: var(--color-cream);
+  padding: 0.25rem 0 0.25rem 1.5rem;
+  position: relative;
+}
+.holiday-promo li::before {
+  content: "\2605";
+  color: var(--color-gold);
+  position: absolute;
+  left: 0;
+}
+.holiday-promo-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+@media (min-width: 768px) {
+  .holiday-promo-inner {
+    grid-template-columns: 1fr 1fr;
+  }
+}
