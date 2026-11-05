@@ -14,7 +14,7 @@ Static website for Giulio's Pizza Restaurant in North Haven, CT (owner Sal Gagli
 
 - `vercel dev` previews clean URLs and redirects exactly as production. `python3 -m http.server` works for pages but every asset path is root-absolute (`/images/...`), so open it at the server root.
 - Deploy: **push to `main`** - the Vercel project is Git-connected and auto-deploys production. Don't follow a push with a manual deploy.
-- GitHub Pages (webbersaur.github.io/giulios-pizza/) was the original preview. It now renders unstyled, because root-absolute paths don't work under the `/giulios-pizza/` subpath. Turn Pages off; don't "fix" the paths.
+- GitHub Pages (webbersaur.github.io/giulios-pizza/) was the original preview; turned off 2026-11-05. Don't re-enable it or "fix" the root-absolute paths for it.
 
 ## Routing (vercel.json)
 
@@ -30,7 +30,7 @@ No form, by decision (2026-11-04): Sal doesn't check email. The catering page se
 
 ## Analytics
 
-GA4 account "Giulio's Pizza", property giuliospizza.com (properties/562366614), measurement ID **G-N0ZSSKEKVT**, created 2026-11-04. The tag is inline in every page's `<head>` and only loads gtag.js on `giuliospizza.com` (vercel.app previews send nothing). Events: `click_to_call` (any `tel:` link) and `click_to_order` (Slice or EZCater links, with `order_service`), both carrying `link_location` (header/footer/content). After the first real hits (about 24h after DNS cutover), star both as key events in GA Admin > Events. A tag change means editing all 8 pages.
+GA4 account "Giulio's Pizza", property giuliospizza.com (properties/562366614), measurement ID **G-N0ZSSKEKVT**, created 2026-11-04. The tag is inline in every page's `<head>` and only loads gtag.js on `giuliospizza.com` (vercel.app previews send nothing). Events: `click_to_call` (any `tel:` link) and `click_to_order` (Slice or EZCater links, with `order_service`), both carrying `link_location` (header/footer/content). Both starred as key events 2026-11-05 (after the first real hits). A tag change means editing all 8 pages.
 
 ## Business facts
 
@@ -45,8 +45,8 @@ GA4 account "Giulio's Pizza", property giuliospizza.com (properties/562366614), 
 2. At GoDaddy, change ONLY these two records: apex `A @` 35.208.10.153 -> **216.150.1.1** (Vercel's current recommended IP; 76.76.21.21 also works), and `CNAME www` giuliospizza.com. -> **5e753bc7fca954ea.vercel-dns-016.com.** (or cname.vercel-dns.com.). Saving prompts an SMS code to Chris's phone (...7396). **Do not touch MX, autodiscover, or any TXT/SPF/DKIM records** - email is live on Microsoft 365.
 3. DONE 2026-11-04: host-scoped redirect in vercel.json so `giulios-pizza.vercel.app` doesn't stay indexable as a duplicate:
    `{ "source": "/(.*)", "has": [{"type":"host","value":"giulios-pizza.vercel.app"}], "destination": "https://giuliospizza.com/$1", "permanent": true }`
-4. Verify with `curl -o /dev/null -w '%{http_code} %{url_effective}' -L` on every old URL above, then submit sitemap.xml in Search Console. The Domain property `sc-domain:giuliospizza.com` was verified 2026-11-04 by a DNS TXT record (`google-site-verification=E-PrF5...`); never delete that TXT record.
-5. Turn off GitHub Pages.
+4. DONE 2026-11-05 (all old URLs 308 correctly; sitemap submitted via API). Verify with `curl -o /dev/null -w '%{http_code} %{url_effective}' -L` on every old URL above, then submit sitemap.xml in Search Console. The Domain property `sc-domain:giuliospizza.com` was verified 2026-11-04 by a DNS TXT record (`google-site-verification=E-PrF5...`); never delete that TXT record.
+5. DONE 2026-11-05: GitHub Pages turned off (webbersaur.github.io/giulios-pizza/ now 404s).
 
 ## Architecture
 
